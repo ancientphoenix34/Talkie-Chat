@@ -1,22 +1,23 @@
 const express=require('express')
 require('dotenv').config();
 const cors=require('cors');
- const chats =require("./Data/data")
+const chats =require("./Data/data")
+const connectDB=require('./config/Db');
+const userRoutes=require('./Routes/userRoutes');
+const { notFound, errorHandler } = require('./Middleware/errorMiddleware');
 
 
 //creating instance of express
 const app=express();
 app.use(cors({ credentials: true,  origin: 'http://localhost:3000' }));
+app.use(express.json());   //this will make backend accept json data
+connectDB();
 
-//req and res are callbacks
-app.get('/api/chat',(req,res)=>{
-    res.send(chats);
-})
 
-// app.get('/api/chat/:id',(req,res)=>{
-//     const singleChat=chats.find(chat=>chat._id===req.params.id);
-//     res.send(singleChat);
-// })
+app.use(notFound);
+app.use(errorHandler);
+
+app.use('/api/user',userRoutes);
 
 
 
