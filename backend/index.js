@@ -14,12 +14,13 @@ app.use(express.json());   //this will make backend accept json data
 connectDB();
 
 
-app.use(notFound);
-app.use(errorHandler);
+
+
 
 app.use('/api/user',userRoutes);
 
-
+app.use(notFound);
+app.use(errorHandler);
 
 
 app.listen(process.env.PORT,console.log(`server is running on ${process.env.PORT}`));
