@@ -19,7 +19,7 @@ connectDB();
 
 
 app.use('/api/user',userRoutes);
-app.use('/api/chats',chatRoutes);
+app.use('/api/chat',chatRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
