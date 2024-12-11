@@ -59,7 +59,7 @@ const loginUser=asyncHandler(async(req,res)=>{
     }
 })
 
-/*const getAllUsers=asyncHandler(async(req,res)=>{
+const getAllUsers=asyncHandler(async(req,res)=>{
  const keyword=req.query.search?{
     $or:[
         {name:{ $regex: req.query.search, $options: "i"}},
@@ -70,13 +70,13 @@ const loginUser=asyncHandler(async(req,res)=>{
 const users=await User.find(keyword)
 res.send(users);
 
-})
-*/
+});
 
-const getAllUsers=asyncHandler(async(req,res)=>{
-  const users=await User.find({})
-  res.send(users);
-})
+
+// const getAllUsers=asyncHandler(async(req,res)=>{
+//   const users=await User.find({})
+//   res.send(users);
+// })
 
 
 
