@@ -6,6 +6,8 @@ import { IconButton } from "@chakra-ui/react"
 import { LuBell, LuChevronDown } from 'react-icons/lu';
 import { Avatar, AvatarGroup } from "../ui/avatar";
 import { ChatState } from '../../Context/ChatProvider';
+import ProfileModal from './ProfileModal';
+import { useNavigate } from 'react-router-dom';
 
 
 const SideDrawer = () => {
@@ -15,6 +17,13 @@ const SideDrawer = () => {
   const [loadingChat, setLoadingChat] = useState();
   
   const {user}=ChatState();
+
+ const navigate=useNavigate();
+
+  const logoutHandler=()=>{
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
   
   return <>
       <Box
@@ -63,11 +72,13 @@ padding={"1"}
 </IconButton>
     </MenuTrigger>
 <MenuContent>
-        <MenuItem value="new-txt-a">
+        <ProfileModal user={user}>
+        {/* <MenuItem>
           My Profile
-        </MenuItem>
+        </MenuItem> */}
+        </ProfileModal>
         <MenuSeparator />
-        <MenuItem value="new-file-a">
+        <MenuItem onClick={logoutHandler}>
           Logout
         </MenuItem>
  </MenuContent>       

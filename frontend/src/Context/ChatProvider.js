@@ -8,14 +8,14 @@ const ChatProvider=({children})=>{
 
     const navigate=useNavigate();
 
-    const [user,setUser]=useState();
+    const [user,setUser]=useState(null);
 
     useEffect(()=>{
 const userInfo=JSON.parse(localStorage.getItem("userInfo"));
 setUser(userInfo);
 
 if(!userInfo){
-navigate("/login")
+navigate("/");
 }
     },[navigate]);
     return <ChatContext.Provider  value={{user,setUser}}>
