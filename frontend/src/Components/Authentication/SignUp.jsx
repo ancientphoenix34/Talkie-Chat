@@ -124,6 +124,7 @@ const SignUp = () => {
   return (
     <form onSubmit={submitHandler}> {/* Wrap inputs inside a form */}
       <VStack spacing="2px">
+        <Toaster/>
         <Box w="full">
           <FormControl id="first-name" isRequired>
             <FormLabel>Name</FormLabel>

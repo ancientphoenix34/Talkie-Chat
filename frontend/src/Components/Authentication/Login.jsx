@@ -17,6 +17,8 @@ const Login = () => {
   
    const navigate=useNavigate();
 
+
+   <Toaster />
     const submitHandler= async()=>{
     setLoading(true);
     if(!email || !password){
@@ -64,7 +66,7 @@ navigate("/chats");
 
     return (
     <VStack spacing='2px'>
-        
+        <Toaster/>
         <Box w='full'>
       <FormControl id='email' isRequired >
         <FormLabel>E-mail</FormLabel >
