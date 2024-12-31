@@ -25,17 +25,16 @@ import {
   DrawerTrigger,
 } from "../../Components/ui/drawer"
 import UserListItem from '../UserAvatar/UserListItem';
-
+import { Spinner } from "@chakra-ui/react"
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState();
-
   const [isOpen, setIsOpen] = useState(false);
  
  
-  const {user}=ChatState();
+  const {user,setSelectedChat,chats,setChats}=ChatState();
 
  const navigate=useNavigate();
 
@@ -63,10 +62,10 @@ const SideDrawer = () => {
       }
     }
     const {data}=await axios.get(`http://localhost:5000/api/user/allusers?search=${search}`,config);
+    // console.log(data);
   setLoading(false);
   setSearchResult(data);
-  console.log(searchResult);
-  console.log(data);
+ 
   }catch(error){
 toaster.create({
   title:"Error Occured!",
@@ -81,7 +80,34 @@ toaster.create({
 
 
   const accessChat=async(userId)=>{
-<></>
+try{
+setLoadingChat(true);
+
+const config={
+  headers:{
+    "Content-type":"application/json",
+    Authorization:`Bearer ${user.token}`
+  }
+}
+
+const {data}=await axios.post("http://localhost:5000/api/chat/accesschat",{userId},config);
+// console.log(data);
+if(!chats.find((c)=>c._id===data._id)) setChats([data,...chats]);
+
+setSelectedChat(data);
+setLoadingChat(false);
+setIsOpen(false);
+}catch(error){
+  toaster.create({
+    title:"Error Occured!",
+    description:error.response.data.message,
+    status:"error",
+    duration:2000,
+    isClosable:true,
+    position:"top"
+  })
+}
+
   }
   
   return <>
@@ -168,7 +194,7 @@ padding={"1"}
             <ChatLoading/>
           ):(
             searchResult?.map((user)=>(
-              console.log(user),
+              // console.log(user),
 <UserListItem
 user={user}
 key={user._id}
@@ -177,6 +203,7 @@ handleFunction={()=>accessChat(user._id)}
             )
           )
           )}
+          {loadingChat && <Spinner ml="auto" display="flex"/>}
         </DrawerBody>
         </DrawerContent>
       </DrawerRoot>
