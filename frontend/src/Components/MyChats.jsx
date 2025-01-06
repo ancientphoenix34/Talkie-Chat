@@ -53,15 +53,16 @@ toaster.create({
     px={3}
     fontSize={{base:"28px",md:"30px"}}
     fontFamily="Work sans"
-    d="flex"
+    display="flex"
     w="100%"
     justifyContent="space-between"
     alignItems="center"
     >
 My Chats
 <Button
-d="flex"
+display="flex"
 fontSize={{base:"17px",md:"10px",lg:"17px"}}
+
 >New Group Chat +</Button>
     </Box>
 

@@ -77,7 +77,7 @@ navigate("/chats");
       <FormControl id='password' isRequired >
         <FormLabel>Password</FormLabel >
         <InputGroup>
-        <Input  type={show ? "text" : "password"} onChange={(e)=>setPassword(e.target.value)} value={password}/>
+        <Input  placeholder="Enter your password" type={show ? "text" : "password"} onChange={(e)=>setPassword(e.target.value)} value={password}/>
     <InputRightElement width="4rem">
     <Button bg="blue.500" h="1.75rem" size="md" mt={1.5} ml={-4} onClick={handleShowButton}>
         {show ? "Hide" : "Show"}

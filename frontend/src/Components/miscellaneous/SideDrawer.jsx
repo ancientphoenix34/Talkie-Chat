@@ -158,11 +158,11 @@ padding={"1"}
 </IconButton>
     </MenuTrigger>
 <MenuContent>
-        {/* <ProfileModal user={user}> */}
+        <ProfileModal user={user}>
         <MenuItem>
           My Profile
         </MenuItem>
-        {/* </ProfileModal> */}
+        </ProfileModal>
         <MenuSeparator />
         <MenuItem onClick={logoutHandler}>
           Logout
