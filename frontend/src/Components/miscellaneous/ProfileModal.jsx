@@ -15,11 +15,9 @@ import {
   DialogTrigger,
 } from "../../Components/ui/dialog";
 import { Button, Text } from "@chakra-ui/react"
-
+import { AiFillBulb } from "react-icons/ai";
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  
 
 
   return (
@@ -30,7 +28,7 @@ const ProfileModal = ({ user, children }) => {
         ) : (
           <IconButton
             display={{ base: 'flex' }}
-            icon={<LuEye />}
+            icon={<AiFillBulb />}
             onClick={onOpen}
           />
           
@@ -38,7 +36,7 @@ const ProfileModal = ({ user, children }) => {
       }
       <DialogRoot motionPreset="slide-in-bottom" isOpen={isOpen} onClose={onClose}>
         <DialogTrigger asChild>
-          <Button variant="outline">Slide in Bottom</Button>
+          <Button variant="outline" border={"none"}  >My Profile</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -58,7 +56,6 @@ const ProfileModal = ({ user, children }) => {
               <Button variant="outline" onClick={onClose} bg="#e63946" _hover={{ bg: "#9b2226" }}>Close</Button>
             </DialogActionTrigger>
           </DialogFooter>
-          <DialogCloseTrigger />
         </DialogContent>
       </DialogRoot>
     </>

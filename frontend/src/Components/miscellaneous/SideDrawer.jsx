@@ -148,9 +148,7 @@ padding={"1"}
   </MenuRoot>
   <MenuRoot>
     <MenuTrigger>
-    <IconButton
-  background="#DDDFDF"
-  >
+    <IconButton>
   <LuChevronDown fontSize={"2xl"} />
   <AvatarGroup>
     <Avatar size="sm" cursor="pointer" name={user.name} src={user.pic}/>
@@ -158,13 +156,9 @@ padding={"1"}
 </IconButton>
     </MenuTrigger>
 <MenuContent>
-        <ProfileModal user={user}>
-        <MenuItem>
-          My Profile
-        </MenuItem>
-        </ProfileModal>
+        <ProfileModal user={user}/>
         <MenuSeparator />
-        <MenuItem onClick={logoutHandler}>
+        <MenuItem onClick={logoutHandler} marginRight={"10px"} >
           Logout
         </MenuItem>
  </MenuContent>       
@@ -172,7 +166,6 @@ padding={"1"}
 </div>
       </Box>
       <DrawerRoot placement="start" open={isOpen} onOpenChange={(e) => setIsOpen(e.open)}>
-      <DrawerCloseTrigger />
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Search Users</DrawerTitle>
